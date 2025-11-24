@@ -33,7 +33,7 @@ export class UserController {
   @HttpCode(200)
   findOne(@Param('id') id: string) {
     try {
-      return this.userService.findOne(+id);
+      return this.userService.findOne(id);
     } catch (error) {
       const { message } = error;
       const STATUS = {

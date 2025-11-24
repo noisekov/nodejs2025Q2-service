@@ -14,12 +14,12 @@ export class DataBase {
     this.data = {
       users: [
         {
-          id: '12',
+          id: '42314748-f37b-498c-92d6-0b435ae8b0ef',
           login: 'string',
           password: 'string',
           version: 1,
-          createdAt: 1,
-          updatedAt: 1,
+          createdAt: 1764019484517,
+          updatedAt: 1764019484517,
         },
       ],
       artists: [
