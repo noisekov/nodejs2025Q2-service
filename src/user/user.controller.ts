@@ -35,12 +35,18 @@ export class UserController {
     try {
       return this.userService.findOne(+id);
     } catch (error) {
+      const { message } = error;
+      const STATUS = {
+        'User not found': HttpStatus.NOT_FOUND,
+        'Invalid id': HttpStatus.BAD_REQUEST,
+      };
+
       throw new HttpException(
         {
-          status: HttpStatus.NOT_FOUND,
-          error: "userId doesn't exist",
+          status: STATUS[message],
+          error: message,
         },
-        HttpStatus.NOT_FOUND,
+        STATUS[message],
         {
           cause: error,
         },
