@@ -39,11 +39,11 @@ export class DataBase {
       ],
       track: [
         {
-          id: 'string',
-          name: 'string',
-          artistId: 'string',
-          albumId: 'string',
-          duration: 5,
+          id: '42314748-f37b-498c-92d6-0b435ae8b0ef',
+          name: 'La la la',
+          artistId: null,
+          albumId: null,
+          duration: 300,
         },
       ],
       album: [
