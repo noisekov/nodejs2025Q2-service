@@ -21,6 +21,14 @@ export class DataBase {
           createdAt: 1764019484517,
           updatedAt: 1764019484517,
         },
+        {
+          id: '42314748-f37b-498c-92d6-0b435ae8b0ea',
+          login: 'string',
+          password: 'string',
+          version: 1,
+          createdAt: 1764091562670,
+          updatedAt: 1764091562670,
+        },
       ],
       artists: [
         {

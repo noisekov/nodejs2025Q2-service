@@ -2,6 +2,7 @@ import { User } from 'src/types/types';
 import { DataBase } from '../db/db';
 import { CreateUserDto } from 'src/user/dto/create-user.dto';
 import { randomUUID } from 'crypto';
+import { UpdateUserDto } from 'src/user/dto/update-user.dto';
 
 export class UserMapper {
   db: DataBase;
@@ -36,5 +37,30 @@ export class UserMapper {
     };
 
     data.push(userData);
+  }
+
+  update(id: string, updateUserDto: UpdateUserDto) {
+    const data = Object.values(this.db.getData())[this.USERS_KEY] as User[];
+    const userData = data.find((user: User) => user.id === id);
+    const { oldPassword, newPassword } = updateUserDto;
+
+    if (oldPassword !== userData.password) {
+      throw new Error('Invalid password');
+    }
+
+    if (oldPassword === newPassword) {
+      throw new Error('Password is the same');
+    }
+
+    const newDataUser = Object.assign(
+      userData,
+      { password: newPassword },
+      {
+        version: userData.version + 1,
+        updatedAt: Date.now(),
+      },
+    );
+
+    return newDataUser;
   }
 }
