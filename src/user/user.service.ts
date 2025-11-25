@@ -38,6 +38,6 @@ export class UserService {
   }
 
   remove(id: string) {
-    return `This action removes a #${id} user`;
+    return this.mapper.remove(id);
   }
 }

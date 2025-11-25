@@ -3,6 +3,7 @@ import { DataBase } from '../db/db';
 import { CreateUserDto } from 'src/user/dto/create-user.dto';
 import { randomUUID } from 'crypto';
 import { UpdateUserDto } from 'src/user/dto/update-user.dto';
+import { isValidUUID } from 'src/utils/validateUUID';
 
 export class UserMapper {
   db: DataBase;
@@ -62,5 +63,20 @@ export class UserMapper {
     );
 
     return newDataUser;
+  }
+
+  remove(id: string) {
+    if (!isValidUUID(id)) {
+      throw new Error('Invalid id');
+    }
+
+    const data = Object.values(this.db.getData())[this.USERS_KEY] as User[];
+    const userData = data.indexOf(data.find((user: User) => user.id === id));
+
+    if (userData === -1) {
+      throw new Error('User not found');
+    }
+
+    return data.splice(userData, 1);
   }
 }

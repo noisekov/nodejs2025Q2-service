@@ -83,6 +83,25 @@ export class UserController {
   @Delete(':id')
   @HttpCode(204)
   remove(@Param('id') id: string) {
-    return this.userService.remove(id);
+    try {
+      return this.userService.remove(id);
+    } catch (error) {
+      const { message } = error;
+      const STATUS = {
+        'User not found': HttpStatus.NOT_FOUND,
+        'Invalid id': HttpStatus.BAD_REQUEST,
+      };
+
+      throw new HttpException(
+        {
+          status: STATUS[message],
+          error: message,
+        },
+        STATUS[message],
+        {
+          cause: error,
+        },
+      );
+    }
   }
 }
