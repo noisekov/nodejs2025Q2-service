@@ -32,9 +32,9 @@ export class DataBase {
       ],
       artists: [
         {
-          id: 'string',
-          name: 'string',
-          grammy: true,
+          id: '42314748-f37b-498c-92d6-0b435ae8b0ef',
+          name: 'BibaMorgenshternovichBoba',
+          grammy: false,
         },
       ],
       track: [
