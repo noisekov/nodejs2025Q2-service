@@ -48,10 +48,10 @@ export class DataBase {
       ],
       album: [
         {
-          id: 'string',
-          name: 'string',
-          year: 1,
-          artistId: 'string',
+          id: '42314748-f37b-498c-92d6-0b435ae8b0ef',
+          name: 'New Hero',
+          year: 2022,
+          artistId: null,
         },
       ],
       favorites: [

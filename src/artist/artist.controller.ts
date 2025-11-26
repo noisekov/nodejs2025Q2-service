@@ -33,7 +33,26 @@ export class ArtistController {
   @Get(':id')
   @HttpCode(HttpStatus.OK)
   findOne(@Param('id') id: string) {
-    return this.artistService.findOne(id);
+    try {
+      return this.artistService.findOne(id);
+    } catch (error) {
+      const { message } = error;
+      const STATUS = {
+        'Artist not found': HttpStatus.NOT_FOUND,
+        'Invalid id': HttpStatus.BAD_REQUEST,
+      };
+
+      throw new HttpException(
+        {
+          status: STATUS[message],
+          error: message,
+        },
+        STATUS[message],
+        {
+          cause: error,
+        },
+      );
+    }
   }
 
   @Put(':id')
