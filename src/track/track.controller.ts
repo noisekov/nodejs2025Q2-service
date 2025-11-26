@@ -16,7 +16,13 @@ import { UpdateTrackDto } from './dto/update-track.dto';
 
 @Controller('track')
 export class TrackController {
-  constructor(private readonly trackService: TrackService) {}
+  status: object;
+  constructor(private readonly trackService: TrackService) {
+    this.status = {
+      'Track not found': HttpStatus.NOT_FOUND,
+      'Invalid id': HttpStatus.BAD_REQUEST,
+    };
+  }
 
   @Post()
   @HttpCode(HttpStatus.CREATED)
@@ -37,17 +43,13 @@ export class TrackController {
       return this.trackService.findOne(id);
     } catch (error) {
       const { message } = error;
-      const STATUS = {
-        'Track not found': HttpStatus.NOT_FOUND,
-        'Invalid id': HttpStatus.BAD_REQUEST,
-      };
 
       throw new HttpException(
         {
-          status: STATUS[message],
+          status: this.status[message],
           error: message,
         },
-        STATUS[message],
+        this.status[message],
         {
           cause: error,
         },
@@ -68,17 +70,13 @@ export class TrackController {
       return this.trackService.remove(id);
     } catch (error) {
       const { message } = error;
-      const STATUS = {
-        'Track not found': HttpStatus.NOT_FOUND,
-        'Invalid id': HttpStatus.BAD_REQUEST,
-      };
 
       throw new HttpException(
         {
-          status: STATUS[message],
+          status: this.status[message],
           error: message,
         },
-        STATUS[message],
+        this.status[message],
         {
           cause: error,
         },

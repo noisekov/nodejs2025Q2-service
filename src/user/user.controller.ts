@@ -16,7 +16,15 @@ import { UpdateUserDto } from './dto/update-user.dto';
 
 @Controller('user')
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  status: object;
+  constructor(private readonly userService: UserService) {
+    this.status = {
+      'User not found': HttpStatus.NOT_FOUND,
+      'Invalid id': HttpStatus.BAD_REQUEST,
+      'Password is the same': HttpStatus.NOT_FOUND,
+      'Invalid password': HttpStatus.BAD_REQUEST,
+    };
+  }
 
   @Post()
   @HttpCode(HttpStatus.CREATED)
@@ -37,17 +45,13 @@ export class UserController {
       return this.userService.findOne(id);
     } catch (error) {
       const { message } = error;
-      const STATUS = {
-        'User not found': HttpStatus.NOT_FOUND,
-        'Invalid id': HttpStatus.BAD_REQUEST,
-      };
 
       throw new HttpException(
         {
-          status: STATUS[message],
+          status: this.status[message],
           error: message,
         },
-        STATUS[message],
+        this.status[message],
         {
           cause: error,
         },
@@ -62,17 +66,13 @@ export class UserController {
       return this.userService.update(id, updateUserDto);
     } catch (error) {
       const { message } = error;
-      const STATUS = {
-        'Password is the same': HttpStatus.NOT_FOUND,
-        'Invalid password': HttpStatus.BAD_REQUEST,
-      };
 
       throw new HttpException(
         {
-          status: STATUS[message],
+          status: this.status[message],
           error: message,
         },
-        STATUS[message],
+        this.status[message],
         {
           cause: error,
         },
@@ -87,17 +87,13 @@ export class UserController {
       return this.userService.remove(id);
     } catch (error) {
       const { message } = error;
-      const STATUS = {
-        'User not found': HttpStatus.NOT_FOUND,
-        'Invalid id': HttpStatus.BAD_REQUEST,
-      };
 
       throw new HttpException(
         {
-          status: STATUS[message],
+          status: this.status[message],
           error: message,
         },
-        STATUS[message],
+        this.status[message],
         {
           cause: error,
         },

@@ -16,7 +16,13 @@ import { UpdateArtistDto } from './dto/update-artist.dto';
 
 @Controller('artist')
 export class ArtistController {
-  constructor(private readonly artistService: ArtistService) {}
+  status: object;
+  constructor(private readonly artistService: ArtistService) {
+    this.status = {
+      'Artist not found': HttpStatus.NOT_FOUND,
+      'Invalid id': HttpStatus.BAD_REQUEST,
+    };
+  }
 
   @Post()
   @HttpCode(HttpStatus.CREATED)
@@ -37,17 +43,13 @@ export class ArtistController {
       return this.artistService.findOne(id);
     } catch (error) {
       const { message } = error;
-      const STATUS = {
-        'Artist not found': HttpStatus.NOT_FOUND,
-        'Invalid id': HttpStatus.BAD_REQUEST,
-      };
 
       throw new HttpException(
         {
-          status: STATUS[message],
+          status: this.status[message],
           error: message,
         },
-        STATUS[message],
+        this.status[message],
         {
           cause: error,
         },
@@ -62,17 +64,13 @@ export class ArtistController {
       return this.artistService.update(id, updateArtistDto);
     } catch (error) {
       const { message } = error;
-      const STATUS = {
-        'Artist not found': HttpStatus.NOT_FOUND,
-        'Invalid id': HttpStatus.BAD_REQUEST,
-      };
 
       throw new HttpException(
         {
-          status: STATUS[message],
+          status: this.status[message],
           error: message,
         },
-        STATUS[message],
+        this.status[message],
         {
           cause: error,
         },
@@ -87,17 +85,13 @@ export class ArtistController {
       return this.artistService.remove(id);
     } catch (error) {
       const { message } = error;
-      const STATUS = {
-        'Artist not found': HttpStatus.NOT_FOUND,
-        'Invalid id': HttpStatus.BAD_REQUEST,
-      };
 
       throw new HttpException(
         {
-          status: STATUS[message],
+          status: this.status[message],
           error: message,
         },
-        STATUS[message],
+        this.status[message],
         {
           cause: error,
         },
