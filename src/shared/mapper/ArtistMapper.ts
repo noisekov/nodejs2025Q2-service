@@ -1,6 +1,6 @@
-import { CreateArtistDto } from 'src/Artist/dto/create-Artist.dto';
+import { CreateArtistDto } from 'src/CRUD/artist/dto/create-artist.dto';
 import { DataBase } from '../db/db';
-import { UpdateArtistDto } from 'src/Artist/dto/update-Artist.dto';
+import { UpdateArtistDto } from 'src/CRUD/artist/dto/update-artist.dto';
 import { Artist } from 'src/types/types';
 import { randomUUID } from 'crypto';
 import { isValidUUID } from 'src/utils/validateUUID';

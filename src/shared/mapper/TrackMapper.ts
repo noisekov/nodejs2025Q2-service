@@ -1,6 +1,6 @@
-import { CreateTrackDto } from 'src/track/dto/create-track.dto';
+import { CreateTrackDto } from 'src/CRUD/track/dto/create-track.dto';
 import { DataBase } from '../db/db';
-import { UpdateTrackDto } from 'src/track/dto/update-track.dto';
+import { UpdateTrackDto } from 'src/CRUD/track/dto/update-track.dto';
 import { Track } from 'src/types/types';
 import { randomUUID } from 'crypto';
 import { isValidUUID } from 'src/utils/validateUUID';
