@@ -1,6 +1,6 @@
 import { CreateArtistDto } from 'src/CRUD/artist/dto/create-artist.dto';
 import { UpdateArtistDto } from 'src/CRUD/artist/dto/update-artist.dto';
-import { Artist } from 'src/types/types';
+import { Album, Artist, Track } from 'src/types/types';
 import { randomUUID } from 'crypto';
 import { isValidUUID } from 'src/utils/validateUUID';
 import { DataBase } from 'src/db/db';
@@ -8,6 +8,8 @@ import { DataBase } from 'src/db/db';
 export class ArtistRepository {
   db: DataBase;
   ARTIST_KEY = 1;
+  ALBUM_KEY = 3;
+  TRACKS_KEY = 2;
   constructor() {
     this.db = DataBase.instance;
   }
@@ -66,6 +68,18 @@ export class ArtistRepository {
     if (artistData === -1) {
       throw new Error('Artist not found');
     }
+
+    const dataTrack = Object.values(this.db.getData())[
+      this.TRACKS_KEY
+    ] as Track[];
+    const trackData = dataTrack.filter((track: Track) => track.artistId === id);
+    trackData.forEach((track: Track) => (track.artistId = null));
+
+    const dataAlbum = Object.values(this.db.getData())[
+      this.ALBUM_KEY
+    ] as Album[];
+    const albumData = dataAlbum.filter((album: Album) => album.artistId === id);
+    albumData.forEach((album: Album) => (album.artistId = null));
 
     data.splice(artistData, 1);
   }
