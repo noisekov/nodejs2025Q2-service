@@ -71,14 +71,12 @@ export class ArtistRepository {
       throw new Error('Artist not found');
     }
 
-    const dataAlbumAndTrack = [
+    [
       ...(data[this.ALBUM_KEY] as Album[]),
       ...(data[this.TRACKS_KEY] as Track[]),
-    ];
-    const albumData = dataAlbumAndTrack.filter(
-      (album: Album | Track) => album.artistId === id,
-    );
-    albumData.forEach((album: Album | Track) => (album.artistId = null));
+    ]
+      .filter((album: Album | Track) => album.artistId === id)
+      .forEach((album: Album | Track) => (album.artistId = null));
 
     dataArtists.splice(artistData, 1);
   }
