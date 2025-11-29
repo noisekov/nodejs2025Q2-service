@@ -23,8 +23,8 @@ export class FavsController {
 
   @Post('/track/:id')
   @HttpCode(HttpStatus.CREATED)
-  create(@Body() createFavDto: CreateFavDto) {
-    return this.favsService.create(createFavDto);
+  createTrack(@Body() createFavDto: CreateFavDto) {
+    return this.favsService.createTrack(createFavDto);
   }
 
   @Delete('/track/:id')

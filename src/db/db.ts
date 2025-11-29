@@ -7,7 +7,7 @@ export class DataBase {
     artists: Artist[];
     track: Track[];
     album: Album[];
-    favorites: Favorites[];
+    favorites: Favorites;
   };
 
   private constructor() {
@@ -16,7 +16,11 @@ export class DataBase {
       artists: [],
       track: [],
       album: [],
-      favorites: [],
+      favorites: {
+        artists: [],
+        albums: [],
+        tracks: [],
+      },
     };
   }
 

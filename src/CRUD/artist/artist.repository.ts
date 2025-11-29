@@ -21,7 +21,7 @@ export class ArtistRepository {
   }
 
   findOne(id: string) {
-    const data = Object.values(this.db.getData())[this.ARTIST_KEY];
+    const data = Object.values(this.db.getData())[this.ARTIST_KEY] as Artist[];
 
     return data.find((Artist: Artist) => Artist.id === id);
   }

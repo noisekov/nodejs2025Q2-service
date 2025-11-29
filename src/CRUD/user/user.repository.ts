@@ -19,7 +19,7 @@ export class UserRepository {
   }
 
   findOne(id: string) {
-    const data = Object.values(this.db.getData())[this.USERS_KEY];
+    const data = Object.values(this.db.getData())[this.USERS_KEY] as User[];
 
     return data.find((user: User) => user.id === id);
   }

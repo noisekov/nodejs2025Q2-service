@@ -20,7 +20,7 @@ export class AlbumRepository {
   }
 
   findOne(id: string) {
-    const data = Object.values(this.db.getData())[this.ALBUM_KEY];
+    const data = Object.values(this.db.getData())[this.ALBUM_KEY] as Album[];
 
     return data.find((album: Album) => album.id === id);
   }

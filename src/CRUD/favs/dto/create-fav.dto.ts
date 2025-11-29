@@ -3,11 +3,11 @@ import { Album, Artist, Track } from 'src/types/types';
 
 export class CreateFavDto {
   @IsNotEmpty()
-  artists?: Album['id'][];
+  artists?: Album;
 
   @IsNotEmpty()
-  albums?: Artist['id'][];
+  albums?: Artist;
 
   @IsNotEmpty()
-  tracks?: Track['id'][];
+  tracks?: Track;
 }

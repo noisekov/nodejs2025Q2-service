@@ -19,7 +19,7 @@ export class TrackRepository {
   }
 
   findOne(id: string) {
-    const data = Object.values(this.db.getData())[this.TRACKS_KEY];
+    const data = Object.values(this.db.getData())[this.TRACKS_KEY] as Track[];
 
     return data.find((track: Track) => track.id === id);
   }

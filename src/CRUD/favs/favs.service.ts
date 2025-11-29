@@ -1,14 +1,20 @@
 import { Injectable } from '@nestjs/common';
 import { CreateFavDto } from './dto/create-fav.dto';
+import { FavsRepository } from './favs.repository';
 
 @Injectable()
 export class FavsService {
-  findAll() {
-    return `This action returns all favs`;
+  mapper: FavsRepository;
+  constructor() {
+    this.mapper = new FavsRepository();
   }
 
-  create(createFavDto: CreateFavDto) {
-    return 'This action adds a new fav';
+  findAll() {
+    return this.mapper.findAll();
+  }
+
+  createTrack(createFavDto: CreateFavDto) {
+    return this.mapper.createTrack(createFavDto);
   }
 
   remove(id: string) {
