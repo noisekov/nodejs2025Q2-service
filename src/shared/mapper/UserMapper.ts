@@ -38,11 +38,17 @@ export class UserMapper {
     };
 
     data.push(userData);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { password: _, ...userDataWithoutPassword } = userData;
 
-    return userData;
+    return userDataWithoutPassword;
   }
 
   update(id: string, updateUserDto: UpdateUserDto) {
+    if (!isValidUUID(id)) {
+      throw new Error('Invalid id');
+    }
+
     const data = Object.values(this.db.getData())[this.USERS_KEY] as User[];
     const userData = data.find((user: User) => user.id === id);
 
@@ -68,8 +74,11 @@ export class UserMapper {
         updatedAt: Date.now(),
       },
     );
-    console.log(newDataUser);
-    return newDataUser;
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { password: _, ...userDataWithoutPassword } = newDataUser;
+
+    return userDataWithoutPassword;
   }
 
   remove(id: string) {

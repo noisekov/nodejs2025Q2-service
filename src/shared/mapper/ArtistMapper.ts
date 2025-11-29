@@ -39,6 +39,10 @@ export class ArtistMapper {
   }
 
   update(id: string, updateArtistDto: UpdateArtistDto) {
+    if (!isValidUUID(id)) {
+      throw new Error('Invalid id');
+    }
+
     const data = Object.values(this.db.getData())[this.ARTIST_KEY] as Artist[];
     const artistData = data.find((Artist: Artist) => Artist.id === id);
 

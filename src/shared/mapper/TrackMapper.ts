@@ -41,6 +41,10 @@ export class TrackMapper {
   }
 
   update(id: string, updateTrackDto: UpdateTrackDto) {
+    if (!isValidUUID(id)) {
+      throw new Error('Invalid id');
+    }
+
     const data = Object.values(this.db.getData())[this.TRACKS_KEY] as Track[];
     const trackData = data.find((track: Track) => track.id === id);
 

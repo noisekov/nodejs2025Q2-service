@@ -21,8 +21,8 @@ export class UserController {
     this.status = {
       'User not found': HttpStatus.NOT_FOUND,
       'Invalid id': HttpStatus.BAD_REQUEST,
-      'Password is the same': HttpStatus.NOT_FOUND,
-      'Invalid password': HttpStatus.BAD_REQUEST,
+      'Password is the same': HttpStatus.FORBIDDEN,
+      'Invalid password': HttpStatus.FORBIDDEN,
     };
   }
 

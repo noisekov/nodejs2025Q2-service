@@ -40,6 +40,10 @@ export class AlbumMapper {
   }
 
   update(id: string, updateAlbumDto: UpdateAlbumDto) {
+    if (!isValidUUID(id)) {
+      throw new Error('Invalid id');
+    }
+
     const data = Object.values(this.db.getData())[this.ALBUM_KEY] as Album[];
     const albumData = data.find((album: Album) => album.id === id);
 
