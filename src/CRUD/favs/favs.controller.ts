@@ -17,6 +17,7 @@ export class FavsController {
     this.status = {
       'Invalid id': HttpStatus.BAD_REQUEST,
       UNPROCESSABLE_ENTITY: HttpStatus.UNPROCESSABLE_ENTITY,
+      'Data not found': HttpStatus.NOT_FOUND,
     };
   }
 
@@ -47,6 +48,12 @@ export class FavsController {
     }
   }
 
+  @Delete('/track/:id')
+  @HttpCode(HttpStatus.NO_CONTENT)
+  removeTrack(@Param('id') id: string) {
+    return this.favsService.removeTrack(id);
+  }
+
   @Post('/album/:id')
   @HttpCode(HttpStatus.CREATED)
   createAlbum(@Param('id') id: string) {
@@ -66,6 +73,12 @@ export class FavsController {
         },
       );
     }
+  }
+
+  @Delete('/album/:id')
+  @HttpCode(HttpStatus.NO_CONTENT)
+  removeAlbum(@Param('id') id: string) {
+    return this.favsService.removeAlbum(id);
   }
 
   @Post('/artist/:id')
@@ -89,9 +102,9 @@ export class FavsController {
     }
   }
 
-  @Delete('/track/:id')
+  @Delete('/artist/:id')
   @HttpCode(HttpStatus.NO_CONTENT)
-  remove(@Param('id') id: string) {
-    return this.favsService.remove(id);
+  removeArtist(@Param('id') id: string) {
+    return this.favsService.removeArtist(id);
   }
 }

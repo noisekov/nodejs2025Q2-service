@@ -37,6 +37,21 @@ export class FavsRepository {
     return dataFavs;
   }
 
+  removeTrack(id: string) {
+    if (!isValidUUID(id)) {
+      throw new Error('Invalid id');
+    }
+
+    const data = Object.values(this.db.getData())[this.FAVS_KEY] as Favorites;
+    const trackData = data.tracks.findIndex((track: Track) => track.id === id);
+
+    if (trackData === -1) {
+      throw new Error('Data not found');
+    }
+
+    data.tracks.splice(trackData, 1);
+  }
+
   createAlbum(id: string) {
     if (!isValidUUID(id)) {
       throw new Error('Invalid id');
@@ -56,6 +71,21 @@ export class FavsRepository {
     return dataFavs;
   }
 
+  removeAlbum(id: string) {
+    if (!isValidUUID(id)) {
+      throw new Error('Invalid id');
+    }
+
+    const data = Object.values(this.db.getData())[this.ALBUM_KEY] as Favorites;
+    const albumData = data.albums.findIndex((album: Album) => album.id === id);
+
+    if (albumData === -1) {
+      throw new Error('Data not found');
+    }
+
+    data.albums.splice(albumData, 1);
+  }
+
   createArtist(id: string) {
     if (!isValidUUID(id)) {
       throw new Error('Invalid id');
@@ -73,5 +103,22 @@ export class FavsRepository {
     dataFavs.artists.push(artist);
 
     return dataFavs;
+  }
+
+  removeArtist(id: string) {
+    if (!isValidUUID(id)) {
+      throw new Error('Invalid id');
+    }
+
+    const data = Object.values(this.db.getData())[this.ARTIST_KEY] as Favorites;
+    const artistsData = data.artists.findIndex(
+      (artist: Artist) => artist.id === id,
+    );
+
+    if (artistsData === -1) {
+      throw new Error('Data not found');
+    }
+
+    data.artists.splice(artistsData, 1);
   }
 }
