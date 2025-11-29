@@ -61,14 +61,12 @@ export class ArtistRepository {
     }
 
     const data = Object.values(this.db.getData())[this.ARTIST_KEY] as Artist[];
-    const artistData = data.indexOf(
-      data.find((Artist: Artist) => Artist.id === id),
-    );
+    const artistData = data.findIndex((Artist: Artist) => Artist.id === id);
 
     if (artistData === -1) {
       throw new Error('Artist not found');
     }
 
-    return data.splice(artistData, 1);
+    data.splice(artistData, 1);
   }
 }

@@ -1,13 +1,14 @@
 import { CreateAlbumDto } from 'src/CRUD/Album/dto/create-Album.dto';
 import { DataBase } from '../../db/db';
 import { UpdateAlbumDto } from 'src/CRUD/Album/dto/update-Album.dto';
-import { Album } from 'src/types/types';
+import { Album, Track } from 'src/types/types';
 import { randomUUID } from 'crypto';
 import { isValidUUID } from 'src/utils/validateUUID';
 
 export class AlbumRepository {
   db: DataBase;
   ALBUM_KEY = 3;
+  TRACKS_KEY = 2;
   constructor() {
     this.db = DataBase.instance;
   }
@@ -61,15 +62,21 @@ export class AlbumRepository {
       throw new Error('Invalid id');
     }
 
-    const data = Object.values(this.db.getData())[this.ALBUM_KEY] as Album[];
-    const albumData = data.indexOf(
-      data.find((album: Album) => album.id === id),
-    );
+    const dataAlbum = Object.values(this.db.getData())[
+      this.ALBUM_KEY
+    ] as Album[];
+    const albumData = dataAlbum.findIndex((album: Album) => album.id === id);
 
     if (albumData === -1) {
       throw new Error('Album not found');
     }
 
-    return data.splice(albumData, 1);
+    const dataTrack = Object.values(this.db.getData())[
+      this.TRACKS_KEY
+    ] as Track[];
+    const trackData = dataTrack.filter((track: Track) => track.albumId === id);
+    trackData.forEach((track: Track) => (track.albumId = null));
+
+    dataAlbum.splice(albumData, 1);
   }
 }

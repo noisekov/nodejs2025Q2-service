@@ -63,14 +63,12 @@ export class TrackRepository {
     }
 
     const data = Object.values(this.db.getData())[this.TRACKS_KEY] as Track[];
-    const trackData = data.indexOf(
-      data.find((track: Track) => track.id === id),
-    );
+    const trackData = data.findIndex((track: Track) => track.id === id);
 
     if (trackData === -1) {
       throw new Error('Track not found');
     }
 
-    return data.splice(trackData, 1);
+    data.splice(trackData, 1);
   }
 }

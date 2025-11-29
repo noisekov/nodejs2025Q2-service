@@ -87,12 +87,12 @@ export class UserRepository {
     }
 
     const data = Object.values(this.db.getData())[this.USERS_KEY] as User[];
-    const userData = data.indexOf(data.find((user: User) => user.id === id));
+    const userData = data.findIndex((user: User) => user.id === id);
 
     if (userData === -1) {
       throw new Error('User not found');
     }
 
-    return data.splice(userData, 1);
+    data.splice(userData, 1);
   }
 }
