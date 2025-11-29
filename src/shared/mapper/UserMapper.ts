@@ -38,6 +38,8 @@ export class UserMapper {
     };
 
     data.push(userData);
+
+    return userData;
   }
 
   update(id: string, updateUserDto: UpdateUserDto) {
@@ -66,7 +68,7 @@ export class UserMapper {
         updatedAt: Date.now(),
       },
     );
-
+    console.log(newDataUser);
     return newDataUser;
   }
 

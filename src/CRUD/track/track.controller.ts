@@ -60,7 +60,22 @@ export class TrackController {
   @Put(':id')
   @HttpCode(HttpStatus.OK)
   update(@Param('id') id: string, @Body() updateTrackDto: UpdateTrackDto) {
-    return this.trackService.update(id, updateTrackDto);
+    try {
+      return this.trackService.update(id, updateTrackDto);
+    } catch (error) {
+      const { message } = error;
+
+      throw new HttpException(
+        {
+          status: this.status[message],
+          error: message,
+        },
+        this.status[message],
+        {
+          cause: error,
+        },
+      );
+    }
   }
 
   @Delete(':id')

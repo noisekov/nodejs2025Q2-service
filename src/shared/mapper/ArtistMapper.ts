@@ -34,6 +34,8 @@ export class ArtistMapper {
     };
 
     data.push(artistData);
+
+    return artistData;
   }
 
   update(id: string, updateArtistDto: UpdateArtistDto) {

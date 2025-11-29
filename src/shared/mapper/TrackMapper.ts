@@ -36,6 +36,8 @@ export class TrackMapper {
     };
 
     data.push(trackData);
+
+    return trackData;
   }
 
   update(id: string, updateTrackDto: UpdateTrackDto) {

@@ -20,11 +20,11 @@ export class AlbumService {
   }
 
   findOne(id: string) {
-    const albumData = this.mapper.findOne(id);
-
     if (!isValidUUID(id)) {
       throw new Error('Invalid id');
     }
+
+    const albumData = this.mapper.findOne(id);
 
     if (!albumData) {
       throw new Error('Album not found');

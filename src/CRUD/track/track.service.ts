@@ -21,11 +21,11 @@ export class TrackService {
   }
 
   findOne(id: string) {
-    const trackData = this.mapper.findOne(id);
-
     if (!isValidUUID(id)) {
       throw new Error('Invalid id');
     }
+
+    const trackData = this.mapper.findOne(id);
 
     if (!trackData) {
       throw new Error('Track not found');

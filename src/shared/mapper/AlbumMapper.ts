@@ -35,6 +35,8 @@ export class AlbumMapper {
     };
 
     data.push(albumData);
+
+    return albumData;
   }
 
   update(id: string, updateAlbumDto: UpdateAlbumDto) {

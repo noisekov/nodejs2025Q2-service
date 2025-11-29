@@ -20,11 +20,11 @@ export class UserService {
   }
 
   findOne(id: string) {
-    const userData = this.mapper.findOne(id);
-
     if (!isValidUUID(id)) {
       throw new Error('Invalid id');
     }
+
+    const userData = this.mapper.findOne(id);
 
     if (!userData) {
       throw new Error('User not found');

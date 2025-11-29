@@ -19,11 +19,11 @@ export class ArtistService {
   }
 
   findOne(id: string) {
-    const artistData = this.mapper.findOne(id);
-
     if (!isValidUUID(id)) {
       throw new Error('Invalid id');
     }
+
+    const artistData = this.mapper.findOne(id);
 
     if (!artistData) {
       throw new Error('Artist not found');
