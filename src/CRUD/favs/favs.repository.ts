@@ -1,11 +1,11 @@
 // import { isValidUUID } from 'src/utils/validateUUID';
 import { DataBase } from 'src/db/db';
-import { Favorites } from 'src/types/types';
-import { CreateFavDto } from './dto/create-fav.dto';
+import { Favorites, Track } from 'src/types/types';
 
 export class FavsRepository {
   db: DataBase;
   FAVS_KEY = 4;
+  TRACKS_KEY = 2;
   constructor() {
     this.db = DataBase.instance;
   }
@@ -16,35 +16,18 @@ export class FavsRepository {
     return data;
   }
 
-  findOne(id: string) {
-    console.log(id);
-    // const data = Object.values(this.db.getData())[this.FAVS_KEY];
+  createTrack(id: string) {
+    const data = Object.values(this.db.getData());
+    const dataFavs = data[this.FAVS_KEY] as Favorites;
+    const dataTracks = data[this.TRACKS_KEY] as Track[];
+    const track = dataTracks.find((track: Track) => track.id === id);
 
-    // return data.find((favorites: Favorites) => favorites.id === id);
-  }
+    if (!track) {
+      return;
+    }
 
-  createTrack(createFavoritesDto: CreateFavDto) {
-    const data = Object.values(this.db.getData())[this.FAVS_KEY] as Favorites;
-    const { tracks } = createFavoritesDto;
-    console.log(tracks);
-    // data.tracks.push({ ...tracks });
+    dataFavs.tracks.push(track);
 
-    return data;
-  }
-
-  remove(id: string) {
-    console.log(id);
-    // if (!isValidUUID(id)) {
-    //   throw new Error('Invalid id');
-    // }
-    // const data = Object.values(this.db.getData());
-    // const dataFavoritess = data[this.FAVS_KEY] as Favorites[];
-    // const FavoritesData = dataFavoritess.findIndex(
-    //   (favorites: Favorites) => favorites.id === id,
-    // );
-    // if (FavoritesData === -1) {
-    //   throw new Error('Favorites not found');
-    // }
-    // dataFavoritess.splice(FavoritesData, 1);
+    return dataFavs;
   }
 }

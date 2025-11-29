@@ -2,14 +2,12 @@ import {
   Controller,
   Get,
   Post,
-  Body,
   Param,
   Delete,
   HttpCode,
   HttpStatus,
 } from '@nestjs/common';
 import { FavsService } from './favs.service';
-import { CreateFavDto } from './dto/create-fav.dto';
 
 @Controller('favs')
 export class FavsController {
@@ -23,8 +21,8 @@ export class FavsController {
 
   @Post('/track/:id')
   @HttpCode(HttpStatus.CREATED)
-  createTrack(@Body() createFavDto: CreateFavDto) {
-    return this.favsService.createTrack(createFavDto);
+  createTrack(@Param('id') id: string) {
+    return this.favsService.createTrack(id);
   }
 
   @Delete('/track/:id')

@@ -29,7 +29,7 @@ export interface Album {
 }
 
 export interface Favorites {
-  artists: string[];
-  albums: string[];
-  tracks: string[];
+  artists: Artist[];
+  albums: Album[];
+  tracks: Track[];
 }
