@@ -16,6 +16,14 @@ export class FavsService {
     return this.mapper.createTrack(id);
   }
 
+  createAlbum(id: string) {
+    return this.mapper.createAlbum(id);
+  }
+
+  createArtist(id: string) {
+    return this.mapper.createArtist(id);
+  }
+
   remove(id: string) {
     return `This action removes a #${id} fav`;
   }

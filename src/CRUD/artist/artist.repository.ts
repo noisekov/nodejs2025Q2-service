@@ -61,6 +61,7 @@ export class ArtistRepository {
     if (!isValidUUID(id)) {
       throw new Error('Invalid id');
     }
+
     const data = Object.values(this.db.getData());
     const dataArtists = data[this.ARTIST_KEY] as Artist[];
     const artistData = dataArtists.findIndex(
