@@ -33,6 +33,6 @@ export class FavsService {
   }
 
   removeArtist(id: string) {
-    return this.mapper.removeAlbum(id);
+    return this.mapper.removeArtist(id);
   }
 }
