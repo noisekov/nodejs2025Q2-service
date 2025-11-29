@@ -1,14 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { CreateArtistDto } from './dto/create-artist.dto';
 import { UpdateArtistDto } from './dto/update-artist.dto';
-import { ArtistMapper } from 'src/shared/mapper/ArtistMapper';
+import { ArtistRepository } from 'src/shared/mapper/ArtistRepository';
 import { isValidUUID } from 'src/utils/validateUUID';
 
 @Injectable()
 export class ArtistService {
-  mapper: ArtistMapper;
+  mapper: ArtistRepository;
   constructor() {
-    this.mapper = new ArtistMapper();
+    this.mapper = new ArtistRepository();
   }
   create(createArtistDto: CreateArtistDto) {
     return this.mapper.create(createArtistDto);

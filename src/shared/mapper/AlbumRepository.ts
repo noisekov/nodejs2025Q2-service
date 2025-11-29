@@ -5,7 +5,7 @@ import { Album } from 'src/types/types';
 import { randomUUID } from 'crypto';
 import { isValidUUID } from 'src/utils/validateUUID';
 
-export class AlbumMapper {
+export class AlbumRepository {
   db: DataBase;
   ALBUM_KEY = 3;
   constructor() {

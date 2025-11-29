@@ -5,7 +5,7 @@ import { Track } from 'src/types/types';
 import { randomUUID } from 'crypto';
 import { isValidUUID } from 'src/utils/validateUUID';
 
-export class TrackMapper {
+export class TrackRepository {
   db: DataBase;
   TRACKS_KEY = 2;
   constructor() {

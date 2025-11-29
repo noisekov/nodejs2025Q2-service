@@ -5,7 +5,7 @@ import { randomUUID } from 'crypto';
 import { UpdateUserDto } from 'src/CRUD/user/dto/update-user.dto';
 import { isValidUUID } from 'src/utils/validateUUID';
 
-export class UserMapper {
+export class UserRepository {
   db: DataBase;
   USERS_KEY = 0;
   constructor() {

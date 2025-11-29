@@ -1,15 +1,15 @@
 import { Injectable } from '@nestjs/common';
 import { CreateTrackDto } from './dto/create-track.dto';
 import { UpdateTrackDto } from './dto/update-track.dto';
-import { TrackMapper } from 'src/shared/mapper/TrackMapper';
+import { TrackRepository } from 'src/shared/mapper/TrackRepository';
 import { isValidUUID } from 'src/utils/validateUUID';
 
 @Injectable()
 export class TrackService {
-  mapper: TrackMapper;
+  mapper: TrackRepository;
 
   constructor() {
-    this.mapper = new TrackMapper();
+    this.mapper = new TrackRepository();
   }
 
   create(createTrackDto: CreateTrackDto) {

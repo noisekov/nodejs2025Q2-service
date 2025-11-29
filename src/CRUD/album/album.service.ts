@@ -1,14 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { CreateAlbumDto } from './dto/create-album.dto';
 import { UpdateAlbumDto } from './dto/update-album.dto';
-import { AlbumMapper } from 'src/shared/mapper/AlbumMapper';
+import { AlbumRepository } from 'src/shared/mapper/AlbumRepository';
 import { isValidUUID } from 'src/utils/validateUUID';
 
 @Injectable()
 export class AlbumService {
-  mapper: AlbumMapper;
+  mapper: AlbumRepository;
   constructor() {
-    this.mapper = new AlbumMapper();
+    this.mapper = new AlbumRepository();
   }
 
   create(createAlbumDto: CreateAlbumDto) {

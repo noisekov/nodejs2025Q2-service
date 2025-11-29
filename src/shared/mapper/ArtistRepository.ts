@@ -5,7 +5,7 @@ import { Artist } from 'src/types/types';
 import { randomUUID } from 'crypto';
 import { isValidUUID } from 'src/utils/validateUUID';
 
-export class ArtistMapper {
+export class ArtistRepository {
   db: DataBase;
   ARTIST_KEY = 1;
   constructor() {
