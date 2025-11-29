@@ -43,6 +43,11 @@ export class UserMapper {
   update(id: string, updateUserDto: UpdateUserDto) {
     const data = Object.values(this.db.getData())[this.USERS_KEY] as User[];
     const userData = data.find((user: User) => user.id === id);
+
+    if (!userData) {
+      throw new Error('User not found');
+    }
+
     const { oldPassword, newPassword } = updateUserDto;
 
     if (oldPassword !== userData.password) {

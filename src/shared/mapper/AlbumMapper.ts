@@ -40,6 +40,11 @@ export class AlbumMapper {
   update(id: string, updateAlbumDto: UpdateAlbumDto) {
     const data = Object.values(this.db.getData())[this.ALBUM_KEY] as Album[];
     const albumData = data.find((album: Album) => album.id === id);
+
+    if (!albumData) {
+      throw new Error('Album not found');
+    }
+
     const newDataAlbum = Object.assign(albumData, updateAlbumDto);
 
     return newDataAlbum;

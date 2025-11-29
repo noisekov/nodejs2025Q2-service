@@ -41,6 +41,11 @@ export class TrackMapper {
   update(id: string, updateTrackDto: UpdateTrackDto) {
     const data = Object.values(this.db.getData())[this.TRACKS_KEY] as Track[];
     const trackData = data.find((track: Track) => track.id === id);
+
+    if (!trackData) {
+      throw new Error('Track not found');
+    }
+
     const newDataTrack = Object.assign(trackData, updateTrackDto);
 
     return newDataTrack;

@@ -39,6 +39,11 @@ export class ArtistMapper {
   update(id: string, updateArtistDto: UpdateArtistDto) {
     const data = Object.values(this.db.getData())[this.ARTIST_KEY] as Artist[];
     const artistData = data.find((Artist: Artist) => Artist.id === id);
+
+    if (!artistData) {
+      throw new Error('Artist not found');
+    }
+
     const newDataArtist = Object.assign(artistData, updateArtistDto);
 
     return newDataArtist;
