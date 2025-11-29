@@ -61,26 +61,25 @@ export class ArtistRepository {
     if (!isValidUUID(id)) {
       throw new Error('Invalid id');
     }
-
-    const data = Object.values(this.db.getData())[this.ARTIST_KEY] as Artist[];
-    const artistData = data.findIndex((Artist: Artist) => Artist.id === id);
+    const data = Object.values(this.db.getData());
+    const dataArtists = data[this.ARTIST_KEY] as Artist[];
+    const artistData = dataArtists.findIndex(
+      (Artist: Artist) => Artist.id === id,
+    );
 
     if (artistData === -1) {
       throw new Error('Artist not found');
     }
 
-    const dataTrack = Object.values(this.db.getData())[
-      this.TRACKS_KEY
-    ] as Track[];
-    const trackData = dataTrack.filter((track: Track) => track.artistId === id);
-    trackData.forEach((track: Track) => (track.artistId = null));
+    const dataAlbumAndTrack = [
+      ...(data[this.ALBUM_KEY] as Album[]),
+      ...(data[this.TRACKS_KEY] as Track[]),
+    ];
+    const albumData = dataAlbumAndTrack.filter(
+      (album: Album | Track) => album.artistId === id,
+    );
+    albumData.forEach((album: Album | Track) => (album.artistId = null));
 
-    const dataAlbum = Object.values(this.db.getData())[
-      this.ALBUM_KEY
-    ] as Album[];
-    const albumData = dataAlbum.filter((album: Album) => album.artistId === id);
-    albumData.forEach((album: Album) => (album.artistId = null));
-
-    data.splice(artistData, 1);
+    dataArtists.splice(artistData, 1);
   }
 }
