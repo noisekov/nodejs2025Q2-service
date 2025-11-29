@@ -1,5 +1,5 @@
 import { CreateAlbumDto } from 'src/CRUD/Album/dto/create-Album.dto';
-import { DataBase } from '../db/db';
+import { DataBase } from '../../db/db';
 import { UpdateAlbumDto } from 'src/CRUD/Album/dto/update-Album.dto';
 import { Album } from 'src/types/types';
 import { randomUUID } from 'crypto';

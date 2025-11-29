@@ -1,9 +1,9 @@
 import { CreateArtistDto } from 'src/CRUD/artist/dto/create-artist.dto';
-import { DataBase } from '../db/db';
 import { UpdateArtistDto } from 'src/CRUD/artist/dto/update-artist.dto';
 import { Artist } from 'src/types/types';
 import { randomUUID } from 'crypto';
 import { isValidUUID } from 'src/utils/validateUUID';
+import { DataBase } from 'src/db/db';
 
 export class ArtistRepository {
   db: DataBase;

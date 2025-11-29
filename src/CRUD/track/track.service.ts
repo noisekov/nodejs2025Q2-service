@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CreateTrackDto } from './dto/create-track.dto';
 import { UpdateTrackDto } from './dto/update-track.dto';
-import { TrackRepository } from 'src/shared/mapper/TrackRepository';
+import { TrackRepository } from 'src/CRUD/track/track.repository';
 import { isValidUUID } from 'src/utils/validateUUID';
 
 @Injectable()

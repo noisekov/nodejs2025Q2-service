@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { UserRepository } from 'src/shared/mapper/UserRepository';
 import { isValidUUID } from 'src/utils/validateUUID';
+import { UserRepository } from './user.repository';
 
 @Injectable()
 export class UserService {

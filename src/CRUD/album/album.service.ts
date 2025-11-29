@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CreateAlbumDto } from './dto/create-album.dto';
 import { UpdateAlbumDto } from './dto/update-album.dto';
-import { AlbumRepository } from 'src/shared/mapper/AlbumRepository';
+import { AlbumRepository } from 'src/CRUD/album/album.repository';
 import { isValidUUID } from 'src/utils/validateUUID';
 
 @Injectable()

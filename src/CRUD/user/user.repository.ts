@@ -1,9 +1,9 @@
 import { User } from 'src/types/types';
-import { DataBase } from '../db/db';
 import { CreateUserDto } from 'src/CRUD/user/dto/create-user.dto';
 import { randomUUID } from 'crypto';
 import { UpdateUserDto } from 'src/CRUD/user/dto/update-user.dto';
 import { isValidUUID } from 'src/utils/validateUUID';
+import { DataBase } from 'src/db/db';
 
 export class UserRepository {
   db: DataBase;

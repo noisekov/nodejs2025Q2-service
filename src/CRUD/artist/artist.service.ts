@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { CreateArtistDto } from './dto/create-artist.dto';
 import { UpdateArtistDto } from './dto/update-artist.dto';
-import { ArtistRepository } from 'src/shared/mapper/ArtistRepository';
 import { isValidUUID } from 'src/utils/validateUUID';
+import { ArtistRepository } from './artist.repository';
 
 @Injectable()
 export class ArtistService {
