@@ -4,6 +4,7 @@ import { UpdateTrackDto } from 'src/CRUD/track/dto/update-track.dto';
 import { Track } from 'src/types/types';
 import { randomUUID } from 'crypto';
 import { isValidUUID } from 'src/utils/validateUUID';
+import { FavsRepository } from '../favs/favs.repository';
 
 export class TrackRepository {
   db: DataBase;
@@ -70,5 +71,6 @@ export class TrackRepository {
     }
 
     data.splice(trackData, 1);
+    new FavsRepository().removeTrack(id);
   }
 }

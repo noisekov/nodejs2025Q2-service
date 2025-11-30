@@ -4,6 +4,7 @@ import { UpdateAlbumDto } from 'src/CRUD/Album/dto/update-Album.dto';
 import { Album, Track } from 'src/types/types';
 import { randomUUID } from 'crypto';
 import { isValidUUID } from 'src/utils/validateUUID';
+import { FavsRepository } from '../favs/favs.repository';
 
 export class AlbumRepository {
   db: DataBase;
@@ -78,5 +79,6 @@ export class AlbumRepository {
     trackData.forEach((track: Track) => (track.albumId = null));
 
     dataAlbum.splice(albumData, 1);
+    new FavsRepository().removeAlbum(id);
   }
 }

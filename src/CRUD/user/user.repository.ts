@@ -38,8 +38,8 @@ export class UserRepository {
     };
 
     data.push(userData);
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { password: _, ...userDataWithoutPassword } = userData;
+    void _;
 
     return userDataWithoutPassword;
   }
@@ -75,8 +75,8 @@ export class UserRepository {
       },
     );
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { password: _, ...userDataWithoutPassword } = newDataUser;
+    void _;
 
     return userDataWithoutPassword;
   }

@@ -4,6 +4,7 @@ import { Album, Artist, Track } from 'src/types/types';
 import { randomUUID } from 'crypto';
 import { isValidUUID } from 'src/utils/validateUUID';
 import { DataBase } from 'src/db/db';
+import { FavsRepository } from '../favs/favs.repository';
 
 export class ArtistRepository {
   db: DataBase;
@@ -80,5 +81,6 @@ export class ArtistRepository {
       .forEach((album: Album | Track) => (album.artistId = null));
 
     dataArtists.splice(artistData, 1);
+    new FavsRepository().removeArtist(id);
   }
 }

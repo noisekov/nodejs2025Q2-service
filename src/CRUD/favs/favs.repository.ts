@@ -41,20 +41,22 @@ export class FavsRepository {
     return mappingFields(data, dataFavs);
   }
 
-  // removeTrack(id: string) {
-  //   if (!isValidUUID(id)) {
-  //     throw new Error('Invalid id');
-  //   }
+  removeTrack(id: string) {
+    if (!isValidUUID(id)) {
+      throw new Error('Invalid id');
+    }
 
-  //   const data = Object.values(this.db.getData())[this.FAVS_KEY] as Favorites;
-  //   const trackData = data.tracks.findIndex((track: Track) => track.id === id);
+    const data = Object.values(this.db.getData())[this.FAVS_KEY] as Favorites;
+    const trackIndex = data.tracks.findIndex(
+      (trackId: Track['id']) => trackId === id,
+    );
 
-  //   if (trackData === -1) {
-  //     throw new Error('Data not found');
-  //   }
+    if (trackIndex === -1) {
+      throw new Error('Data not found');
+    }
 
-  //   data.tracks.splice(trackData, 1);
-  // }
+    data.tracks.splice(trackIndex, 1);
+  }
 
   createAlbum(id: string) {
     if (!isValidUUID(id)) {
@@ -76,20 +78,22 @@ export class FavsRepository {
     return mappingFields(data, dataFavs);
   }
 
-  // removeAlbum(id: string) {
-  //   if (!isValidUUID(id)) {
-  //     throw new Error('Invalid id');
-  //   }
+  removeAlbum(id: string) {
+    if (!isValidUUID(id)) {
+      throw new Error('Invalid id');
+    }
 
-  //   const data = Object.values(this.db.getData())[this.ALBUM_KEY] as Favorites;
-  //   const albumData = data.albums.findIndex((album: Album) => album.id === id);
+    const data = Object.values(this.db.getData())[this.FAVS_KEY] as Favorites;
+    const albumIndex = data.albums.findIndex(
+      (albumId: Album['id']) => albumId === id,
+    );
 
-  //   if (albumData === -1) {
-  //     throw new Error('Data not found');
-  //   }
+    if (albumIndex === -1) {
+      throw new Error('Data not found');
+    }
 
-  //   data.albums.splice(albumData, 1);
-  // }
+    data.albums.splice(albumIndex, 1);
+  }
 
   createArtist(id: string) {
     if (!isValidUUID(id)) {
@@ -111,20 +115,20 @@ export class FavsRepository {
     return mappingFields(data, dataFavs);
   }
 
-  // removeArtist(id: string) {
-  //   if (!isValidUUID(id)) {
-  //     throw new Error('Invalid id');
-  //   }
+  removeArtist(id: string) {
+    if (!isValidUUID(id)) {
+      throw new Error('Invalid id');
+    }
 
-  //   const data = Object.values(this.db.getData())[this.ARTIST_KEY] as Favorites;
-  //   const artistsData = data.artists.findIndex(
-  //     (artist: Artist) => artist.id === id,
-  //   );
+    const data = Object.values(this.db.getData())[this.FAVS_KEY] as Favorites;
+    const artistsIndex = data.artists.findIndex(
+      (artistId: Artist['id']) => artistId === id,
+    );
 
-  //   if (artistsData === -1) {
-  //     throw new Error('Data not found');
-  //   }
+    if (artistsIndex === -1) {
+      throw new Error('Data not found');
+    }
 
-  //   data.artists.splice(artistsData, 1);
-  // }
+    data.artists.splice(artistsIndex, 1);
+  }
 }
