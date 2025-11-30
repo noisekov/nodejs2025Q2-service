@@ -16,23 +16,23 @@ export class FavsService {
     return this.mapper.createTrack(id);
   }
 
-  removeTrack(id: string) {
-    return this.mapper.removeTrack(id);
-  }
+  // removeTrack(id: string) {
+  //   return this.mapper.removeTrack(id);
+  // }
 
   createAlbum(id: string) {
     return this.mapper.createAlbum(id);
   }
 
-  removeAlbum(id: string) {
-    return this.mapper.removeAlbum(id);
-  }
+  // removeAlbum(id: string) {
+  //   return this.mapper.removeAlbum(id);
+  // }
 
   createArtist(id: string) {
     return this.mapper.createArtist(id);
   }
 
-  removeArtist(id: string) {
-    return this.mapper.removeArtist(id);
-  }
+  // removeArtist(id: string) {
+  //   return this.mapper.removeArtist(id);
+  // }
 }

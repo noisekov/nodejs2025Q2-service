@@ -29,7 +29,15 @@ export interface Album {
 }
 
 export interface Favorites {
+  artists: string[];
+  albums: string[];
+  tracks: string[];
+}
+
+export interface IDB {
+  users: User[];
   artists: Artist[];
-  albums: Album[];
-  tracks: Track[];
+  track: Track[];
+  album: Album[];
+  favorites: Favorites;
 }

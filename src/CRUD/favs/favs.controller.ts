@@ -3,7 +3,7 @@ import {
   Get,
   Post,
   Param,
-  Delete,
+  // Delete,
   HttpCode,
   HttpStatus,
   HttpException,
@@ -48,11 +48,11 @@ export class FavsController {
     }
   }
 
-  @Delete('/track/:id')
-  @HttpCode(HttpStatus.NO_CONTENT)
-  removeTrack(@Param('id') id: string) {
-    return this.favsService.removeTrack(id);
-  }
+  // @Delete('/track/:id')
+  // @HttpCode(HttpStatus.NO_CONTENT)
+  // removeTrack(@Param('id') id: string) {
+  //   return this.favsService.removeTrack(id);
+  // }
 
   @Post('/album/:id')
   @HttpCode(HttpStatus.CREATED)
@@ -75,11 +75,11 @@ export class FavsController {
     }
   }
 
-  @Delete('/album/:id')
-  @HttpCode(HttpStatus.NO_CONTENT)
-  removeAlbum(@Param('id') id: string) {
-    return this.favsService.removeAlbum(id);
-  }
+  // @Delete('/album/:id')
+  // @HttpCode(HttpStatus.NO_CONTENT)
+  // removeAlbum(@Param('id') id: string) {
+  //   return this.favsService.removeAlbum(id);
+  // }
 
   @Post('/artist/:id')
   @HttpCode(HttpStatus.CREATED)
@@ -102,9 +102,9 @@ export class FavsController {
     }
   }
 
-  @Delete('/artist/:id')
-  @HttpCode(HttpStatus.NO_CONTENT)
-  removeArtist(@Param('id') id: string) {
-    return this.favsService.removeArtist(id);
-  }
+  // @Delete('/artist/:id')
+  // @HttpCode(HttpStatus.NO_CONTENT)
+  // removeArtist(@Param('id') id: string) {
+  //   return this.favsService.removeArtist(id);
+  // }
 }

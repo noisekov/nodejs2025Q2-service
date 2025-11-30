@@ -1,14 +1,8 @@
-import { Album, Artist, Favorites, Track, User } from 'src/types/types';
+import { IDB } from 'src/types/types';
 
 export class DataBase {
   static #instance: DataBase;
-  data: {
-    users: User[];
-    artists: Artist[];
-    track: Track[];
-    album: Album[];
-    favorites: Favorites;
-  };
+  data: IDB;
 
   private constructor() {
     this.data = {
