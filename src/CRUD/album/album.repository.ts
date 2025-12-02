@@ -1,6 +1,6 @@
-import { CreateAlbumDto } from 'src/CRUD/Album/dto/create-Album.dto';
+import { CreateAlbumDto } from 'src/CRUD/album/dto/create-album.dto';
 import { DataBase } from '../../db/db';
-import { UpdateAlbumDto } from 'src/CRUD/Album/dto/update-Album.dto';
+import { UpdateAlbumDto } from 'src/CRUD/album/dto/update-album.dto';
 import { Album, Track } from 'src/types/types';
 import { randomUUID } from 'crypto';
 import { isValidUUID } from 'src/utils/validateUUID';
