@@ -4,6 +4,11 @@ import { randomUUID } from 'crypto';
 import { UpdateUserDto } from 'src/CRUD/user/dto/update-user.dto';
 import { isValidUUID } from 'src/utils/validateUUID';
 import { DataBase } from 'src/db/db';
+import {
+  BadRequestException,
+  ForbiddenException,
+  NotFoundException,
+} from '@nestjs/common';
 
 export class UserRepository {
   db: DataBase;
@@ -46,24 +51,24 @@ export class UserRepository {
 
   update(id: string, updateUserDto: UpdateUserDto) {
     if (!isValidUUID(id)) {
-      throw new Error('Invalid id');
+      throw new BadRequestException('Invalid id');
     }
 
     const data = Object.values(this.db.getData())[this.USERS_KEY] as User[];
     const userData = data.find((user: User) => user.id === id);
 
     if (!userData) {
-      throw new Error('User not found');
+      throw new NotFoundException('User not found');
     }
 
     const { oldPassword, newPassword } = updateUserDto;
 
     if (oldPassword !== userData.password) {
-      throw new Error('Invalid password');
+      throw new ForbiddenException('Invalid password');
     }
 
     if (oldPassword === newPassword) {
-      throw new Error('Password is the same');
+      throw new ForbiddenException('Password is the same');
     }
 
     const newDataUser = Object.assign(
@@ -83,14 +88,14 @@ export class UserRepository {
 
   remove(id: string) {
     if (!isValidUUID(id)) {
-      throw new Error('Invalid id');
+      throw new BadRequestException('Invalid id');
     }
 
     const data = Object.values(this.db.getData())[this.USERS_KEY] as User[];
     const userData = data.findIndex((user: User) => user.id === id);
 
     if (userData === -1) {
-      throw new Error('User not found');
+      throw new NotFoundException('User not found');
     }
 
     data.splice(userData, 1);

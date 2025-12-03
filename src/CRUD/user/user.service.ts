@@ -1,4 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { isValidUUID } from 'src/utils/validateUUID';
@@ -21,13 +25,13 @@ export class UserService {
 
   findOne(id: string) {
     if (!isValidUUID(id)) {
-      throw new Error('Invalid id');
+      throw new BadRequestException('Invalid id');
     }
 
     const userData = this.mapper.findOne(id);
 
     if (!userData) {
-      throw new Error('User not found');
+      throw new NotFoundException('User not found');
     }
 
     return userData;
