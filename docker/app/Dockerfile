@@ -24,6 +24,6 @@ RUN npm ci --only=production
 COPY --from=build /usr/src/app/dist ./dist
 COPY --from=build /usr/src/app/doc ./doc
 
-EXPOSE 3000
+EXPOSE ${PORT}
 
 CMD ["node", "dist/main"]

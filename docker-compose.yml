@@ -28,13 +28,14 @@ services:
     container_name: home-library-app
     environment:
       NODE_ENV: ${NODE_ENV}
+      PORT: ${PORT}
       DB_HOST: postgres
       DB_PORT: ${DB_PORT}
       DB_USERNAME: ${DB_USERNAME}
       DB_PASSWORD: ${DB_PASSWORD}
       DB_NAME: ${DB_NAME}
     ports:
-      - '3000:3000'
+      - '4000:4000'
     depends_on:
       postgres:
         condition: service_healthy
