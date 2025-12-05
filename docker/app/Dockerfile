@@ -3,8 +3,13 @@ FROM node:24.10.0-alpine AS build
 WORKDIR /usr/src/app
 
 COPY package*.json ./
+COPY prisma.config.ts ./
+COPY prisma ./prisma/
+COPY .env.example ./
 
 RUN npm ci
+
+RUN npx prisma generate
 
 COPY . .
 
@@ -26,4 +31,4 @@ COPY --from=build /usr/src/app/doc ./doc
 
 EXPOSE ${PORT}
 
-CMD ["node", "dist/main"]
+CMD ["node", "dist/src/main"]
