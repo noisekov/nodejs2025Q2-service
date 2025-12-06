@@ -5,9 +5,9 @@
 ```
 npm i
 
-npm docker:build
+npm run docker:build
 
-npm docker:up
+npm run docker:up
 
 npm run test
 ```
