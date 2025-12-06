@@ -26,9 +26,15 @@ COPY package*.json ./
 
 RUN npm ci --only=production
 
+COPY --from=build /usr/src/app/node_modules/.prisma /usr/src/app/node_modules/.prisma
+COPY --from=build /usr/src/app/node_modules/@prisma /usr/src/app/node_modules/@prisma
+
 COPY --from=build /usr/src/app/dist ./dist
 COPY --from=build /usr/src/app/doc ./doc
 
+COPY --from=build /usr/src/app/prisma ./prisma
+COPY --from=build /usr/src/app/prisma.config.ts ./
+
 EXPOSE ${PORT}
 
-CMD ["node", "dist/src/main"]
+CMD ["sh", "-c", "npx prisma migrate deploy && node dist/src/main"]
