@@ -1,5 +1,17 @@
 # Home Library Service
 
+## Docker with DataBase
+
+```
+npm i
+
+npm docker:build
+
+npm docker:up
+
+npm run test
+```
+
 ## Prerequisites
 
 - Git - [Download & Install Git](https://git-scm.com/downloads).
