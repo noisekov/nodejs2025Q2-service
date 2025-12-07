@@ -5,6 +5,8 @@
 ```
 npm i
 
+cp .env.example .env
+
 npm run docker:build
 
 npm run docker:up
