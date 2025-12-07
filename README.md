@@ -7,17 +7,15 @@ npm i
 
 cp .env.example .env
 
-docker login
-
-docker pull noisekov/home-library-app:latest
-
-docker pull noisekov/home-library-postgres:latest
-
 npm run docker:build
 
 npm run docker:up
 
 npm run test
+
+may be will be needed
+docker pull noisekov/home-library-app:latest
+docker pull noisekov/home-library-postgres:latest
 ```
 
 ## Prerequisites
