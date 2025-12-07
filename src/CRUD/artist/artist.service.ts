@@ -16,8 +16,6 @@ export class ArtistService {
     id: true,
     name: true,
     grammy: true,
-    createdAt: true,
-    updatedAt: true,
   };
 
   constructor(
@@ -27,24 +25,17 @@ export class ArtistService {
 
   async create(createArtistDto: CreateArtistDto) {
     const { name, grammy } = createArtistDto;
-    const now = BigInt(Date.now());
 
     const artistData = await this.prisma.artist.create({
       data: {
         id: randomUUID(),
         name,
         grammy: grammy || false,
-        createdAt: now,
-        updatedAt: now,
       },
       select: this.selectData,
     });
 
-    return {
-      ...artistData,
-      createdAt: Number(artistData.createdAt),
-      updatedAt: Number(artistData.updatedAt),
-    };
+    return artistData;
   }
 
   async findAll() {
@@ -52,11 +43,7 @@ export class ArtistService {
       select: this.selectData,
     });
 
-    return artists.map((artist) => ({
-      ...artist,
-      createdAt: Number(artist.createdAt),
-      updatedAt: Number(artist.updatedAt),
-    }));
+    return artists;
   }
 
   async findOne(id: string) {
@@ -73,11 +60,7 @@ export class ArtistService {
       throw new NotFoundException('Artist not found');
     }
 
-    return {
-      ...artistData,
-      createdAt: Number(artistData.createdAt),
-      updatedAt: Number(artistData.updatedAt),
-    };
+    return artistData;
   }
 
   async update(id: string, updateArtistDto: UpdateArtistDto) {
@@ -97,16 +80,11 @@ export class ArtistService {
       where: { id },
       data: {
         ...updateArtistDto,
-        updatedAt: BigInt(Date.now()),
       },
       select: this.selectData,
     });
 
-    return {
-      ...updatedArtist,
-      createdAt: Number(updatedArtist.createdAt),
-      updatedAt: Number(updatedArtist.updatedAt),
-    };
+    return updatedArtist;
   }
 
   async remove(id: string) {

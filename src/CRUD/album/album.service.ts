@@ -17,8 +17,6 @@ export class AlbumService {
     name: true,
     year: true,
     artistId: true,
-    createdAt: true,
-    updatedAt: true,
   };
 
   constructor(
@@ -28,7 +26,6 @@ export class AlbumService {
 
   async create(createAlbumDto: CreateAlbumDto) {
     const { name, year, artistId } = createAlbumDto;
-    const now = BigInt(Date.now());
 
     if (artistId) {
       const artist = await this.prisma.artist.findUnique({
@@ -46,17 +43,11 @@ export class AlbumService {
         name,
         year,
         artistId: artistId || null,
-        createdAt: now,
-        updatedAt: now,
       },
       select: this.selectData,
     });
 
-    return {
-      ...albumData,
-      createdAt: Number(albumData.createdAt),
-      updatedAt: Number(albumData.updatedAt),
-    };
+    return albumData;
   }
 
   async findAll() {
@@ -64,11 +55,7 @@ export class AlbumService {
       select: this.selectData,
     });
 
-    return albums.map((album) => ({
-      ...album,
-      createdAt: Number(album.createdAt),
-      updatedAt: Number(album.updatedAt),
-    }));
+    return albums;
   }
 
   async findOne(id: string) {
@@ -85,11 +72,7 @@ export class AlbumService {
       throw new NotFoundException('Album not found');
     }
 
-    return {
-      ...albumData,
-      createdAt: Number(albumData.createdAt),
-      updatedAt: Number(albumData.updatedAt),
-    };
+    return albumData;
   }
 
   async update(id: string, updateAlbumDto: UpdateAlbumDto) {
@@ -119,16 +102,11 @@ export class AlbumService {
       where: { id },
       data: {
         ...updateAlbumDto,
-        updatedAt: BigInt(Date.now()),
       },
       select: this.selectData,
     });
 
-    return {
-      ...updatedAlbum,
-      createdAt: Number(updatedAlbum.createdAt),
-      updatedAt: Number(updatedAlbum.updatedAt),
-    };
+    return updatedAlbum;
   }
 
   async remove(id: string) {

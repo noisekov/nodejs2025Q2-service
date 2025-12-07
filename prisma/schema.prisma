@@ -19,8 +19,6 @@ model Artist {
   id        String   @id @default(uuid())
   name      String
   grammy    Boolean  @default(false)
-  createdAt BigInt?
-  updatedAt BigInt?
 }
 
 model Album {
@@ -28,8 +26,6 @@ model Album {
   name      String
   year      Int
   artistId  String?
-  createdAt BigInt? 
-  updatedAt BigInt?
 }
 
 model Track {
@@ -38,8 +34,6 @@ model Track {
   duration  Int
   artistId  String?
   albumId   String?
-  createdAt BigInt? 
-  updatedAt BigInt?
 }
 
 model Favorites {
