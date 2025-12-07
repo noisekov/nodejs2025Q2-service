@@ -7,7 +7,6 @@ import {
   Delete,
   HttpCode,
   HttpStatus,
-  HttpException,
   Put,
 } from '@nestjs/common';
 import { TrackService } from './track.service';
@@ -16,13 +15,7 @@ import { UpdateTrackDto } from './dto/update-track.dto';
 
 @Controller('track')
 export class TrackController {
-  status: object;
-  constructor(private readonly trackService: TrackService) {
-    this.status = {
-      'Track not found': HttpStatus.NOT_FOUND,
-      'Invalid id': HttpStatus.BAD_REQUEST,
-    };
-  }
+  constructor(private readonly trackService: TrackService) {}
 
   @Post()
   @HttpCode(HttpStatus.CREATED)
@@ -39,63 +32,18 @@ export class TrackController {
   @Get(':id')
   @HttpCode(HttpStatus.OK)
   findOne(@Param('id') id: string) {
-    try {
-      return this.trackService.findOne(id);
-    } catch (error) {
-      const { message } = error;
-
-      throw new HttpException(
-        {
-          status: this.status[message],
-          error: message,
-        },
-        this.status[message],
-        {
-          cause: error,
-        },
-      );
-    }
+    return this.trackService.findOne(id);
   }
 
   @Put(':id')
   @HttpCode(HttpStatus.OK)
   update(@Param('id') id: string, @Body() updateTrackDto: UpdateTrackDto) {
-    try {
-      return this.trackService.update(id, updateTrackDto);
-    } catch (error) {
-      const { message } = error;
-
-      throw new HttpException(
-        {
-          status: this.status[message],
-          error: message,
-        },
-        this.status[message],
-        {
-          cause: error,
-        },
-      );
-    }
+    return this.trackService.update(id, updateTrackDto);
   }
 
   @Delete(':id')
   @HttpCode(HttpStatus.NO_CONTENT)
   remove(@Param('id') id: string) {
-    try {
-      return this.trackService.remove(id);
-    } catch (error) {
-      const { message } = error;
-
-      throw new HttpException(
-        {
-          status: this.status[message],
-          error: message,
-        },
-        this.status[message],
-        {
-          cause: error,
-        },
-      );
-    }
+    return this.trackService.remove(id);
   }
 }

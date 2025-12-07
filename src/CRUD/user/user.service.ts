@@ -12,23 +12,15 @@ import { randomUUID } from 'crypto';
 
 @Injectable()
 export class UserService {
-  selectData: {
-    id: boolean;
-    login: boolean;
-    version: boolean;
-    createdAt: boolean;
-    updatedAt: boolean;
+  selectData = {
+    id: true,
+    login: true,
+    version: true,
+    createdAt: true,
+    updatedAt: true,
   };
 
-  constructor(private prisma: PrismaService) {
-    this.selectData = {
-      id: true,
-      login: true,
-      version: true,
-      createdAt: true,
-      updatedAt: true,
-    };
-  }
+  constructor(private prisma: PrismaService) {}
 
   async create(createUserDto: CreateUserDto) {
     const { login, password } = createUserDto;

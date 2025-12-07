@@ -15,8 +15,8 @@ CREATE TABLE "Artist" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "grammy" BOOLEAN NOT NULL DEFAULT false,
-    "createdAt" BIGINT NOT NULL,
-    "updatedAt" BIGINT NOT NULL,
+    "createdAt" BIGINT,
+    "updatedAt" BIGINT,
 
     CONSTRAINT "Artist_pkey" PRIMARY KEY ("id")
 );
@@ -27,8 +27,8 @@ CREATE TABLE "Album" (
     "name" TEXT NOT NULL,
     "year" INTEGER NOT NULL,
     "artistId" TEXT,
-    "createdAt" BIGINT NOT NULL,
-    "updatedAt" BIGINT NOT NULL,
+    "createdAt" BIGINT,
+    "updatedAt" BIGINT,
 
     CONSTRAINT "Album_pkey" PRIMARY KEY ("id")
 );
@@ -40,8 +40,8 @@ CREATE TABLE "Track" (
     "duration" INTEGER NOT NULL,
     "artistId" TEXT,
     "albumId" TEXT,
-    "createdAt" BIGINT NOT NULL,
-    "updatedAt" BIGINT NOT NULL,
+    "createdAt" BIGINT,
+    "updatedAt" BIGINT,
 
     CONSTRAINT "Track_pkey" PRIMARY KEY ("id")
 );
