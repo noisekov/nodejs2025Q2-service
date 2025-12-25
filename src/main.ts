@@ -9,7 +9,7 @@ import { readFile } from 'fs/promises';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  const apiYamlPath = join(__dirname, '..', 'doc', 'api.yaml');
+  const apiYamlPath = join(process.cwd(), 'doc', 'api.yaml');
   const fileContents = await readFile(apiYamlPath, 'utf8');
   const swaggerDocument = parse(fileContents);
   SwaggerModule.setup('doc', app, swaggerDocument);

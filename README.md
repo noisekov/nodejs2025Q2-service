@@ -1,5 +1,23 @@
 # Home Library Service
 
+## Docker with DataBase
+
+```
+npm i
+
+cp .env.example .env
+
+npm run docker:build
+
+npm run docker:up
+
+npm run test
+
+may be will be needed
+docker pull noisekov/home-library-app:latest
+docker pull noisekov/home-library-postgres:latest
+```
+
 ## Prerequisites
 
 - Git - [Download & Install Git](https://git-scm.com/downloads).

@@ -6,20 +6,12 @@ import {
   Delete,
   HttpCode,
   HttpStatus,
-  HttpException,
 } from '@nestjs/common';
 import { FavsService } from './favs.service';
 
 @Controller('favs')
 export class FavsController {
-  status: object;
-  constructor(private readonly favsService: FavsService) {
-    this.status = {
-      'Invalid id': HttpStatus.BAD_REQUEST,
-      UNPROCESSABLE_ENTITY: HttpStatus.UNPROCESSABLE_ENTITY,
-      'Data not found': HttpStatus.NOT_FOUND,
-    };
-  }
+  constructor(private readonly favsService: FavsService) {}
 
   @Get()
   @HttpCode(HttpStatus.OK)
@@ -30,22 +22,7 @@ export class FavsController {
   @Post('/track/:id')
   @HttpCode(HttpStatus.CREATED)
   createTrack(@Param('id') id: string) {
-    try {
-      return this.favsService.createTrack(id);
-    } catch (error) {
-      const { message } = error;
-
-      throw new HttpException(
-        {
-          status: this.status[message],
-          error: message,
-        },
-        this.status[message],
-        {
-          cause: error,
-        },
-      );
-    }
+    return this.favsService.createTrack(id);
   }
 
   @Delete('/track/:id')
@@ -57,22 +34,7 @@ export class FavsController {
   @Post('/album/:id')
   @HttpCode(HttpStatus.CREATED)
   createAlbum(@Param('id') id: string) {
-    try {
-      return this.favsService.createAlbum(id);
-    } catch (error) {
-      const { message } = error;
-
-      throw new HttpException(
-        {
-          status: this.status[message],
-          error: message,
-        },
-        this.status[message],
-        {
-          cause: error,
-        },
-      );
-    }
+    return this.favsService.createAlbum(id);
   }
 
   @Delete('/album/:id')
@@ -84,22 +46,7 @@ export class FavsController {
   @Post('/artist/:id')
   @HttpCode(HttpStatus.CREATED)
   createArtist(@Param('id') id: string) {
-    try {
-      return this.favsService.createArtist(id);
-    } catch (error) {
-      const { message } = error;
-
-      throw new HttpException(
-        {
-          status: this.status[message],
-          error: message,
-        },
-        this.status[message],
-        {
-          cause: error,
-        },
-      );
-    }
+    return this.favsService.createArtist(id);
   }
 
   @Delete('/artist/:id')
